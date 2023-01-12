@@ -1,0 +1,3 @@
+regolith.look.path: /usr/share/regolith-look/ayu-dark
+i3xrocks.date.format2: %Y-%m-%d %H:%M:%S
+i3xrocks.time.interval: 5
