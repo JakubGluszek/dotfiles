@@ -1,6 +1,6 @@
 # Exports
-
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$PATH:/opt/nvim-linux64/bin"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
