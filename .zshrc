@@ -3,15 +3,8 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:/opt/nvim-linux64/bin"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-if [[ -f "/opt/homebrew/bin/brew" ]] then
-  # If you're using macOS, you'll want this enabled
-  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 # Set the directory we want to store zinit and plugins
@@ -29,25 +22,40 @@ source "${ZINIT_HOME}/zinit.zsh"
 # Add in Powerlevel10k
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
-# Add in zsh plugins
+# Add in zsh plugins with Turbo mode
+zinit ice wait lucid
 zinit light zsh-users/zsh-syntax-highlighting
+
+zinit ice wait lucid
 zinit light zsh-users/zsh-completions
+
+zinit ice wait lucid
 zinit light zsh-users/zsh-autosuggestions
+
+zinit ice wait lucid
 zinit light Aloxaf/fzf-tab
 
-# Add in snippets
+# Add in snippets with Turbo mode
+zinit ice wait lucid
 zinit snippet OMZP::git
+
+zinit ice wait lucid
 zinit snippet OMZP::sudo
+
+zinit ice wait lucid
 zinit snippet OMZP::archlinux
+
+zinit ice wait lucid
 zinit snippet OMZP::aws
+
+zinit ice wait lucid
 zinit snippet OMZP::kubectl
+
+zinit ice wait lucid
 zinit snippet OMZP::kubectx
+
+zinit ice wait lucid
 zinit snippet OMZP::command-not-found
-
-# Load completions
-autoload -Uz compinit && compinit
-
-zinit cdreplay -q
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -85,4 +93,26 @@ alias c='clear'
 
 # Shell integrations
 # source <(fzf --zsh)
-eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh --cmd cd)"
+
+# Lazy-load NVM
+nvm() {
+    unset -f nvm
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    nvm "$@"
+}
+
+# bun completions
+[ -s "/home/jacob/.bun/_bun" ] && source "/home/jacob/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Defer compinit
+zinit cdreplay -q
+
+# Load completions
+autoload -Uz compinit && compinit
