@@ -97,6 +97,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 alias ls='ls --color'
 alias vim='nvim'
 alias c='clear'
+alias gitree='~/.scripts/gitree.sh'
 
 # Shell integrations
 eval "$(zoxide init zsh --cmd cd)"
