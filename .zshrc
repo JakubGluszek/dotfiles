@@ -57,6 +57,14 @@ zinit snippet OMZP::kubectx
 zinit ice wait lucid
 zinit snippet OMZP::command-not-found
 
+# Add the zsh-history-substring-search plugin
+zinit ice wait lucid
+zinit light zsh-users/zsh-history-substring-search
+
+# Keybindings for history substring search
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -83,8 +91,8 @@ setopt hist_find_no_dups
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-bindkey '^[[A' up-line-or-beginning-search
-bindkey '^[[B' down-line-or-beginning-search
+# bindkey '^[[A' up-line-or-beginning-search
+# bindkey '^[[B' down-line-or-beginning-search
 
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
