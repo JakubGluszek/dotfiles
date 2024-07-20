@@ -62,6 +62,9 @@ zinit ice wait lucid
 zinit light zsh-users/zsh-history-substring-search
 
 # Keybindings for history substring search
+zle -N history-substring-search-up
+zle -N history-substring-search-down
+
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 
@@ -89,8 +92,8 @@ setopt hist_find_no_dups
 
 # Enable history substring search
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
+# zle -N up-line-or-beginning-search
+# zle -N down-line-or-beginning-search
 # bindkey '^[[A' up-line-or-beginning-search
 # bindkey '^[[B' down-line-or-beginning-search
 
@@ -105,7 +108,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 alias ls='ls --color'
 alias vim='nvim'
 alias c='clear'
-alias gitree='~/.scripts/gitree.sh'
+alias gitree='~/.dotfiles/.scripts/gitree.sh'
 
 # Shell integrations
 eval "$(zoxide init zsh --cmd cd)"
