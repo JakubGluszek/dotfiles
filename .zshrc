@@ -2,6 +2,9 @@
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:/opt/nvim-linux64/bin"
 
+# Useful for example when using crontab
+export EDITOR=nvim
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -27,10 +30,20 @@ zinit ice wait lucid
 zinit light zsh-users/zsh-syntax-highlighting
 
 zinit ice wait lucid
-zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
 
 zinit ice wait lucid
-zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
+
+# Add the zsh-history-substring-search plugin
+zinit light zsh-users/zsh-history-substring-search
+
+# Keybindings for history substring search
+zle -N history-substring-search-up
+zle -N history-substring-search-down
+
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
 
 zinit ice wait lucid
 zinit light Aloxaf/fzf-tab
@@ -57,17 +70,6 @@ zinit snippet OMZP::kubectx
 zinit ice wait lucid
 zinit snippet OMZP::command-not-found
 
-# Add the zsh-history-substring-search plugin
-zinit ice wait lucid
-zinit light zsh-users/zsh-history-substring-search
-
-# Keybindings for history substring search
-zle -N history-substring-search-up
-zle -N history-substring-search-down
-
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -91,7 +93,7 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # Enable history substring search
-autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+# autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 # zle -N up-line-or-beginning-search
 # zle -N down-line-or-beginning-search
 # bindkey '^[[A' up-line-or-beginning-search
@@ -109,6 +111,8 @@ alias ls='ls --color'
 alias vim='nvim'
 alias c='clear'
 alias gitree='~/.dotfiles/.scripts/gitree.sh'
+alias setclip="xclip -selection c"
+alias getclip="xclip -selection c -o"
 
 # Shell integrations
 eval "$(zoxide init zsh --cmd cd)"
