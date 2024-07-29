@@ -35,16 +35,6 @@ zinit light zsh-users/zsh-autosuggestions
 zinit ice wait lucid
 zinit light zsh-users/zsh-completions
 
-# Add the zsh-history-substring-search plugin
-zinit light zsh-users/zsh-history-substring-search
-
-# Keybindings for history substring search
-zle -N history-substring-search-up
-zle -N history-substring-search-down
-
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
-
 zinit ice wait lucid
 zinit light Aloxaf/fzf-tab
 
@@ -84,8 +74,8 @@ HISTSIZE=5000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
-setopt appendhistory
-setopt sharehistory
+setopt append_history
+setopt share_history
 setopt hist_ignore_space
 setopt hist_ignore_all_dups
 setopt hist_save_no_dups
@@ -93,11 +83,11 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # Enable history substring search
-# autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
-# zle -N up-line-or-beginning-search
-# zle -N down-line-or-beginning-search
-# bindkey '^[[A' up-line-or-beginning-search
-# bindkey '^[[B' down-line-or-beginning-search
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "$terminfo[kcuu1]" up-line-or-beginning-search
+bindkey "$terminfo[kcud1]" down-line-or-beginning-search
 
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
