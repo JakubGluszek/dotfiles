@@ -9,6 +9,10 @@ return {
     lazy = false,
     config = function() require("transparent").setup() end,
   },
+  {
+    "lambdalisue/vim-suda",
+  },
+
 
   -- == Examples of Adding Plugins ==
 
