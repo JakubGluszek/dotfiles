@@ -2,6 +2,9 @@
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:/opt/nvim-linux64/bin"
 
+export ENCORE_INSTALL="/home/yakob/.encore"
+export PATH="$ENCORE_INSTALL/bin:$PATH"
+
 # Useful for example when using crontab
 export EDITOR=nvim
 
@@ -37,6 +40,9 @@ zinit light zsh-users/zsh-completions
 
 zinit ice wait lucid
 zinit light Aloxaf/fzf-tab
+
+zinit ice atload"zpcdreplay" atclone"./zplug.zsh" atpull"%atclone"
+zinit light g-plane/pnpm-shell-completion
 
 # Add in snippets with Turbo mode
 zinit ice wait lucid
@@ -103,6 +109,7 @@ alias c='clear'
 alias gitree='~/.dotfiles/.scripts/gitree.sh'
 alias setclip="xclip -selection c"
 alias getclip="xclip -selection c -o"
+alias monitor_memory="~/scripts/monitor_memory.sh"
 
 # Shell integrations
 eval "$(zoxide init zsh --cmd cd)"
@@ -128,7 +135,7 @@ zinit cdreplay -q
 autoload -Uz compinit && compinit
 
 # pnpm
-export PNPM_HOME="$HOME/.local/share/pnpm"
+export PNPM_HOME="/home/yakob/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
