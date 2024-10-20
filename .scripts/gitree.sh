@@ -2,11 +2,11 @@
 
 # Check if a directory is provided as an argument
 if [ $# -eq 0 ]; then
-    # If no argument, use current directory
-    DIR="."
+	# If no argument, use current directory
+	DIR="."
 else
-    # Use the provided directory
-    DIR="$1"
+	# Use the provided directory
+	DIR="$1"
 fi
 
 # Run the tree command

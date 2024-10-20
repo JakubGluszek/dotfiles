@@ -1,9 +1,29 @@
 # Exports
+function git() {
+    if [[ "$1" == "restore" && "$2" == "." ]]; then
+        echo "Are you sure you want to restore all changes? This cannot be undone! Type 'yes' to confirm:"
+        read confirmation
+        if [ "$confirmation" != "yes" ]; then
+            echo "Operation cancelled. Your changes are safe."
+            return 0
+        fi
+    fi
+
+    # Call the actual git command
+    command git "$@"
+}
+
+
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:/opt/nvim-linux64/bin"
 
 export ENCORE_INSTALL="/home/yakob/.encore"
 export PATH="$ENCORE_INSTALL/bin:$PATH"
+
+# Golang
+export PATH=$PATH:/usr/local/go/bin
+
+alias air='~/.air'
 
 # Useful for example when using crontab
 export EDITOR=nvim
@@ -141,3 +161,4 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+. "/home/yakob/.deno/env"
